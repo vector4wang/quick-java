@@ -1,4 +1,4 @@
-package design_patterns.mediator_pattern
+package design_patterns.mediator_pattern;
 
 /**
  * Created with IDEA
@@ -28,6 +28,7 @@ public class ConcreteMediator extends Mediator {
         this.collB = collB;
     }
 
+    @Override
     public void contract(String content, Colleague colleague) {
         if (colleague == collA) {
             collB.getMessage(content);

@@ -1,4 +1,4 @@
-package design_patterns.mediator_pattern
+package design_patterns.mediator_pattern;
 
 /**
  * Created with IDEA
