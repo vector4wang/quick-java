@@ -1,5 +1,6 @@
 package feature_learn.thread.notify;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -28,8 +29,8 @@ public class WaitAndNotify {
             TimeUnit.SECONDS.sleep(2);
             System.out.println("-----Main Thread notify-----");
             synchronized (obj) {
-//                obj.notify();
-                obj.notifyAll();
+                obj.notify();
+//                obj.notifyAll();
             }
 
             TimeUnit.SECONDS.sleep(2);

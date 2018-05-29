@@ -22,8 +22,8 @@ public class JoinExample {
         t.start(); // Line 15
         /**
          * 如果join()方法在一个线程实例上调用，当前运行着的线程将阻塞直到这个线程实例完成了执行。
-        */
+         */
         t.join(); // Line 16
-       t1.start();
+        t1.start();
     }
 }
