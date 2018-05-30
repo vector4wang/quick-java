@@ -59,17 +59,18 @@ public class PageVo {
 
     }
 
-    public static  <T> void print(T t) {
+    public static <T> void print(T t) {
         Field[] declaredFields = t.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             CssSelector cssSelector = declaredField.getAnnotation(CssSelector.class);
-            String defaultValue =cssSelector.selector();
+            String defaultValue = cssSelector.selector();
             try {
-                declaredField.set(t,defaultValue);
+                declaredField.set(t, defaultValue);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
         System.out.println(t.toString());
     }
+
 }

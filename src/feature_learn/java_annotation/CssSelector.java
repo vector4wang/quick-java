@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * @BLOG: http://vector4wang.tk
  * @wxid: BMHJQS
  */
-@Retention( RetentionPolicy.RUNTIME )
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Target(ElementType.FIELD)
 public @interface CssSelector {
