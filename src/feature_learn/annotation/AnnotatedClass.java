@@ -1,4 +1,4 @@
-package feature_learn.java_annotation;
+package feature_learn.annotation;
 
 /**
  * @Author: wangxc

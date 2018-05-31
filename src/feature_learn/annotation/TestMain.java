@@ -1,7 +1,4 @@
-package feature_learn.java_annotation;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
+package feature_learn.annotation;
 
 /**
  * @Author: wangxc

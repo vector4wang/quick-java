@@ -1,4 +1,4 @@
-package feature_learn.java_annotation;
+package feature_learn.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,14 +13,9 @@ import java.lang.annotation.Target;
  * @wxid: BMHJQS
  */
 @Retention( RetentionPolicy.RUNTIME )
-@Target( ElementType.METHOD )
-public @interface CustomAnnotationMethod
-{
-
+@Target( ElementType.TYPE )
+public @interface CustomAnnotationClass {
     public String author() default "vector";
 
     public String date();
-
-    public String description();
-
 }

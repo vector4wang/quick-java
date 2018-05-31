@@ -1,4 +1,4 @@
-package feature_learn.java_annotation;
+package feature_learn.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,9 +12,11 @@ import java.lang.annotation.Target;
  * @BLOG: http://vector4wang.tk
  * @wxid: BMHJQS
  */
+
+/**
+ * 标记注解， 无任何元素
+ */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UseCase {
-    public int id();
-    public String description() default "no description";
+public @interface Test {
 }
