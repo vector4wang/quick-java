@@ -2,6 +2,7 @@ package feature_learn.reflection;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
@@ -86,6 +87,9 @@ public class TestMain {
                 System.out.println("实现或继承的属性: " + moStr + " " + type.getName() + " "
                         + declaredField.getName() + ";");
             }
+
+            Method talkMethod = aClass1.getMethod("talk", String.class, String.class);
+            talkMethod.invoke(aClass1.newInstance(),"张三","今天天气不错");
 
 
         } catch (Exception e) {
