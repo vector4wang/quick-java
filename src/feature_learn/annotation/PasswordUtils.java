@@ -1,5 +1,6 @@
 package feature_learn.annotation;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,20 +25,24 @@ public class PasswordUtils {
         return new StringBuilder(password).reverse().toString();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+			throws IllegalAccessException, InvocationTargetException, InstantiationException {
         List<Integer> useCases = new ArrayList<>();
         Collections.addAll(useCases, 47, 48, 49, 50);
         trackUseCases(useCases, PasswordUtils.class);
     }
 
-    public static void trackUseCases(List<Integer> useCases, Class<?> cl) {
+    public static void trackUseCases(List<Integer> useCases, Class<?> cl)
+			throws IllegalAccessException, InstantiationException, InvocationTargetException {
         for (Method m : cl.getDeclaredMethods()) {
             UseCase uc = m.getAnnotation(UseCase.class);
             if (uc != null) {
                 System.out.println("Found Use Case:" + uc.id() + " "
                         + uc.description());
                 useCases.remove(new Integer(uc.id()));
-            }
+//				Object invoke = m.invoke(cl.newInstance(), "123");
+//				System.out.println(invoke.toString());
+			}
         }
         for (int i : useCases) {
             System.out.println("Warning: Missing use case-" + i);
