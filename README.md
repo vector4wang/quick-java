@@ -16,5 +16,13 @@ java 的学习、积累与总结
 #### stack
 JVM 内存结构了解下
 
+
 http://www.importnew.com/23746.html
 https://blog.csdn.net/sted_zxz/article/details/72476673
+
+
+#### jmh
+JMH 是一个由 OpenJDK/Oracle 里面那群开发了 Java 编译器的大牛们所开发的 Micro Benchmark Framework
+
+学习入门: http://blog.dyngr.com/blog/2016/10/29/introduction-of-jmh/
+官方示例: http://hg.openjdk.java.net/code-tools/jmh/file/tip/jmh-samples/src/main/java/org/openjdk/jmh/samples/
