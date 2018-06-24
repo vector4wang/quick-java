@@ -1,6 +1,5 @@
 package feature_learn.annotation.db;
 
-import com.sun.tools.internal.jxc.ap.Const;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
