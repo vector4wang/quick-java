@@ -1,5 +1,7 @@
 package leetcode.array;
 
+import java.util.Arrays;
+
 /**
  * Created with IDEA
  * User: vector 
@@ -17,30 +19,48 @@ public class SingleNumber {
 		 * 输入: [4,1,2,1,2]
 		 * 输出: 4
 		 */
-		int nums[] = {4, 1, 2, 1, 2};
-		//		int nums[] = {2, 2, 1};
-		System.out.println(singleNumberquick(nums));
+//		int nums[] = {4, 1, 2, 1, 2};
+				int nums[] = {2, 2, 1};
+		System.out.println(singleNumber(nums));
 	}
 
+	/**
+	 * 9ms
+	 * @param nums
+	 * @return
+	 */
 	public static int singleNumber(int[] nums) {
-		int count = 0;
+		if (nums.length == 1) {
+			return nums[0];
+		}
+		Arrays.sort(nums);
 		for (int i = 0; i < nums.length; i++) {
-			for (int j = 0; j < nums.length; j++) {
-				if (i != j) {
-					if (nums[i] == nums[j]) {
-						count++;
-					}
+			if (i == 0) {
+				if (nums[i] != nums[i + 1]) {
+					return nums[i];
 				}
 			}
-			if (count == 0) {
+
+			if (i == nums.length-1) {
+				if (nums[i - 1] != nums[i]) {
+					return nums[i];
+				}
+			}
+			if (nums[i] != nums[i + 1] && nums[i - 1] != nums[i]) {
 				return nums[i];
-			} else {
-				count = 0;
 			}
 		}
 		return 0;
 	}
 
+	/**
+	 * 1ms
+	 *
+	 * 异或操作 各个位置，相同为0不同为1
+	 * 想知道，写出这样的方法的人是怎样的人，为什么会如此犀利！！！
+	 * @param nums
+	 * @return
+	 */
 	public static int singleNumberquick(int[] nums) {
 		int num = 0;
 		for (int i = 0; i < nums.length; i++) {

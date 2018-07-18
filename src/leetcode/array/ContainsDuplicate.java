@@ -1,5 +1,7 @@
 package leetcode.array;
 
+import java.util.Arrays;
+
 /**
  * Created with IDEA
  * User: vector 
@@ -13,22 +15,25 @@ package leetcode.array;
 public class ContainsDuplicate {
 
 	public static void main(String[] args) {
-//		int nums[] = {1, 1, 1, 3, 3, 4, 3, 2, 4, 2};
-		int nums[] = {1,2,3,4};
+		//		int nums[] = {1, 1, 1, 3, 3, 4, 3, 2, 4, 2};
+		int nums[] = {1, 2, 3, 4};
 		System.out.println(containsDuplicate(nums));
 	}
 
+	/**
+	 * 使用异或操作，还可以
+	 * @param nums
+	 * @return
+	 */
 	public static boolean containsDuplicate(int[] nums) {
-		if (nums.length <= 0) {
+		if (nums.length == 1) {
 			return false;
 		}
-		for (int i = 0; i < nums.length-1; i++) {
-			for (int j = i + 1; j < nums.length; j++) {
-				if (nums[i] == nums[j]) {
-					return true;
-				}
+		Arrays.sort(nums);
+		for (int i = 0; i < nums.length - 1; i++) {
+			if ((nums[i] ^ nums[i + 1]) == 0) {
+				return true;
 			}
-
 		}
 		return false;
 	}
