@@ -1,4 +1,4 @@
-package feature_learn.generic_paradigm;
+package feature_learn.generic.paradigm;
 
 /**
  * @Author: wangxc
