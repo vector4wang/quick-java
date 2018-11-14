@@ -1,7 +1,8 @@
 package resume_match;
 
-import resume_match.feature.AnonymousResumeFeature;
-import resume_match.feature.TargetResumeFeature;
+import resume_match.model.AnonymousRangeKey;
+import resume_match.model.AnonymousResumeFeatureBody;
+import resume_match.model.ResumeFeatureSimHash;
 
 import java.util.List;
 
@@ -10,33 +11,28 @@ import java.util.List;
  * @Data 2018/9/19 0019
  * @Description TODO
  */
-public abstract class AbstractMatch implements AnonymousMatchInterface {
+public class AbstractMatch implements AnonymousMatchInterface {
+;
+    private AnonymousWaitMatchDataStrategy waitMatchDataStrategy;
 
-	boolean isLastName = false;
-	boolean isNameLess = false;
+    private AnonymousResumeFeatureBody body;
 
-	private AnonymousResumeFeature anonymousResumeFeature;
+    public AbstractMatch(AnonymousWaitMatchDataStrategy waitMatchDataStrategy, AnonymousResumeFeatureBody body) {
+        this.waitMatchDataStrategy = waitMatchDataStrategy;
+        this.body = body;
+    }
 
-	public AbstractMatch(AnonymousResumeFeature anonymousResumeFeature) {
-		this.anonymousResumeFeature = anonymousResumeFeature;
-		if (this.anonymousResumeFeature.getRealName() == "") {
-			isNameLess = true;
-		} else if (this.anonymousResumeFeature.getRealName().length() == 1) {
-			isLastName = true;
-		}
-
-	}
-
-	abstract List<TargetResumeFeature> getTargetResumeFeature();
-
-	@Override
+    @Override
 	public String match() {
-		List<TargetResumeFeature> targetResumeFeature = getTargetResumeFeature();
-		return getOptionVal(anonymousResumeFeature, targetResumeFeature);
+
+        List<ResumeFeatureSimHash> waitMatchTargetFeatureDateList = waitMatchDataStrategy.getWaitMatchTargetFeatureDateList();
+        return null;
 	}
 
-	private String getOptionVal(AnonymousResumeFeature anonymousResumeFeature,
-			List<TargetResumeFeature> targetResumeFeature){
-		return targetResumeFeature.get(0).getRealName();
-	}
+    public static void main(String[] args) {
+        AnonymousResumeFeatureBody body = new AnonymousResumeFeatureBody();
+
+        AbstractMatch abstractMatch = new AbstractMatch(new NormalWaitMatchData(AnonymousRangeKey.FIRMID, body), body);
+        abstractMatch.match();
+    }
 }

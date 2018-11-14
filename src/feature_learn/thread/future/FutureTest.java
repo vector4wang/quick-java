@@ -12,12 +12,17 @@ import java.util.concurrent.*;
  * Description:
  */
 public class FutureTest {
+
+    public void print(String test) {
+        System.out.println(test);
+    }
+
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         long stat = System.currentTimeMillis();
         ExecutorService executorService = Executors.newCachedThreadPool();
         List<ServiceThread> callList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            callList.add(new ServiceThread(i));
+            callList.add(new ServiceThread(i,new FutureTest()));
         }
         List<Future<Integer>> futures = executorService.invokeAll(callList);
         executorService.shutdown();
@@ -40,12 +45,16 @@ class ServiceThread implements Callable<Integer> {
 
     private int num;
 
-    public ServiceThread(int num) {
+    private FutureTest futureTest;
+
+    public ServiceThread(int num,FutureTest futureTest) {
         this.num = num;
+        this.futureTest = futureTest;
     }
 
     @Override
     public Integer call() throws Exception {
+        futureTest.print(num+"");
         System.out.println(Thread.currentThread().getName() + "--->执行中");
         Thread.sleep(10);
         return num;
