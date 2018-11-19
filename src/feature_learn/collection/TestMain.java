@@ -1,8 +1,7 @@
 package feature_learn.collection;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author vector
@@ -47,6 +46,16 @@ public class TestMain {
         iterateByFori(ll);
         iterateByForEach(ll);
         iterateByIterator(ll);
+
+
+
+        Vector<Integer> vector = new Vector<>();
+        vector.add(1);
+        vector.add(3);
+        vector.add(2);
+
+
+        vector.get(1);
 
     }
 
