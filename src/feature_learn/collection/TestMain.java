@@ -1,8 +1,6 @@
 package feature_learn.collection;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * @author vector
@@ -12,41 +10,69 @@ public class TestMain {
     public static void main(String[] args) {
 
 //        ArrayList al = new ArrayList(10);
-//        al.add(3);
-//        al.add(2);
-//        al.add(1);
-//        al.add(4);
-//        al.add(5);
-//        al.add(6);
-//        al.add(6);
-//        al.add(3);
-
-
-
-//        Iterator iter1 = al.iterator();
-//        while(iter1.hasNext()){
-//            iter1.remove();
-//            System.out.println(iter1.next());
-//        }
-
-        System.out.println("===============================================");
-
-        LinkedList ll = new LinkedList();
-
-        for (int i = 0; i < 10000; i++) {
-            ll.add(i);
-        }
-
-//        long s = System.nanoTime();
-//        Object o = ll.get(500000);
-//        System.out.println(o);
+////        al.add(3);
+////        al.add(2);
+////        al.add(1);
+////        al.add(4);
+////        al.add(5);
+////        al.add(6);
+////        al.add(6);
+////        al.add(3);
 //
-//        long e = System.nanoTime();
-//        System.out.println((e-s)/1_000);
+//
+//
+////        Iterator iter1 = al.iterator();
+////        while(iter1.hasNext()){
+////            iter1.remove();
+////            System.out.println(iter1.next());
+////        }
+//
+//        System.out.println("===============================================");
+//
+//        LinkedList ll = new LinkedList();
+//		ll.remove(1);
+//
+//        for (int i = 0; i < 10000; i++) {
+//            ll.add(i);
+//        }
+//
+////        long s = System.nanoTime();
+////        Object o = ll.get(500000);
+////        System.out.println(o);
+////
+////        long e = System.nanoTime();
+////        System.out.println((e-s)/1_000);
+//
+////        iterateByFori(ll);
+////        iterateByForEach(ll);
+////        iterateByIterator(ll);
+//		Vector<String> vec = new Vector<>();
+//		vec.add("a");
+//		vec.add("b");
+//		HashSet<String> hashSet = new HashSet<>(20);
+//		hashSet.add("A");
+//		hashSet.add("B");
+//		hashSet.add("C");
 
-        iterateByFori(ll);
-        iterateByForEach(ll);
-        iterateByIterator(ll);
+//		PriorityQueue<String> queue = new PriorityQueue<>();
+//		queue.add("A");
+//		queue.contains("A");
+//		queue.remove("A");
+		int h = "B".hashCode();
+		System.out.println(h);
+		int yz = h >>> 16;
+
+		System.out.println(h ^ yz);
+
+		Map<String, String> map = new HashMap<>();
+		map.put("A", "asdf");
+		map.put("B", "asdf");
+		map.put("C", "asdf");
+		map.put("D", "asdf");
+		map.containsKey("A");
+		map.remove("B");
+		map.get("C");
+		map.hashCode();
 
     }
 
