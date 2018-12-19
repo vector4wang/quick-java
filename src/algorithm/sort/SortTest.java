@@ -12,9 +12,62 @@ public class SortTest {
 		long s = System.nanoTime();
 		//        bubbleSort(arr);
 		//        selectionSort(arr);
-		insertionSort(arr);
+//		insertionSort(arr);
+//		mergeSort(arr);
+//		quickSort(arr,0,arr.length-1);
+		heapSort(arr);
 		long e = System.nanoTime();
 		print(arr, (e - s) / 1000_000);
+
+	}
+
+
+	/**
+	 * 快速排序
+	 * 从数列中挑出一个元素，称为 “基准”（pivot）；
+	 *
+	 * 重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；
+	 *
+	 * 递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序
+	 * @param arr
+	 * @param left
+	 * @param right
+	 */
+	private static void quickSort(int[] arr,int left,int right) {
+		if (left >= right || arr == null || arr.length <= 1) {
+			return;
+		}
+
+		int i = left, j = right, pivot = arr[(j + i) / 2];
+		while (i <= j) {
+			while (arr[i] < pivot) {
+				i++;
+			}
+			while (arr[j] > pivot) {
+				j--;
+			}
+			if (i < j) {
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+				i++;
+				j--;
+			} else if (i == j) {
+				i++;
+			}
+		}
+		quickSort(arr, i, right);
+		quickSort(arr, left, j);
+	}
+
+	/**
+	 * 归并排序
+	 * 把长度为n的输入序列分成两个长度为n/2的子序列；
+	 * 对这两个子序列分别采用归并排序；
+	 * 将两个排序好的子序列合并成一个最终的排序序列。
+	 * @param arr
+	 */
+	private static void mergeSort(int[] arr) {
 
 	}
 
