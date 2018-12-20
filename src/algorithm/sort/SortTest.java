@@ -16,11 +16,20 @@ public class SortTest {
 //        shellSort(arr);
 //        mergeSort(arr, 0, arr.length - 1);
 //        heapSort(arr);
-        quickSort(arr, 0, arr.length - 1);
+//        quickSort(arr, 0, arr.length - 1);
 
+        int[] ints = bucketSort(arr, 9999);
         long e = System.nanoTime();
+        print(ints, (e - s) / 1000_000); //桶排序较特殊
         print(arr, (e - s) / 1000_000);
+    }
 
+    private static int[] bucketSort(int[] arr, int maxNum) {
+        int sorted[] = new int[maxNum + 1];
+        for (int i = 0; i < arr.length; i++) {
+            sorted[arr[i]] = arr[i];
+        }
+        return sorted;
     }
 
     /**
