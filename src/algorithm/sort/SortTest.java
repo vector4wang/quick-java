@@ -15,11 +15,46 @@ public class SortTest {
 //		insertionSort(arr);
 //        shellSort(arr);
 //        mergeSort(arr, 0, arr.length - 1);
-        heapSort(arr);
+//        heapSort(arr);
+        quickSort(arr, 0, arr.length - 1);
 
         long e = System.nanoTime();
         print(arr, (e - s) / 1000_000);
 
+    }
+
+    /**
+     * 快速排序
+     *
+     * @param arr
+     * @param left
+     * @param right
+     */
+    private static void quickSort(int[] arr, int left, int right) {
+        if (left >= right || arr ==null || arr.length<=1) {
+            return;
+        }
+        int pivot = arr[(right + left) / 2];
+        int i = left, j = right;
+        while (i <= j) {
+            while (arr[i] < pivot) {
+                i++;
+            }
+            while (arr[j] > pivot) {
+                j--;
+            }
+            if (i < j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            } else if(i == j)  {
+                i++;
+            }
+        }
+        quickSort(arr, left, j);
+        quickSort(arr, i, right);
     }
 
     /**
@@ -39,21 +74,22 @@ public class SortTest {
         }
 
         //2.调整堆结构+交换堆顶元素与末尾元素
-        for(int j=arr.length-1;j>0;j--){
-            swap(arr,0,j);//将堆顶元素与末尾元素进行交换
-            adjustHeap(arr,0,j);//重新对堆进行调整
+        for (int j = arr.length - 1; j > 0; j--) {
+            swap(arr, 0, j);//将堆顶元素与末尾元素进行交换
+            adjustHeap(arr, 0, j);//重新对堆进行调整
         }
 
     }
 
     /**
      * 交换元素
+     *
      * @param arr
      * @param a
      * @param b
      */
     private static void swap(int[] arr, int a, int b) {
-        int temp=arr[a];
+        int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
@@ -74,7 +110,7 @@ public class SortTest {
             if (arr[j] > temp) {//如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
                 arr[i] = arr[j];
                 i = j;
-            }else{
+            } else {
                 break;
             }
         }
