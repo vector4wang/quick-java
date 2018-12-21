@@ -8,28 +8,63 @@ package algorithm.sort;
  */
 public class SortTest {
     public static void main(String[] args) {
-        int arr[] = {3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+        int arr[] = {3, 44, 38, 5, 47, 36, 36, 26, 27, 2, 46, 4, 19, 50, 48};
         long s = System.nanoTime();
-        //        bubbleSort(arr);
-        //        selectionSort(arr);
-//		insertionSort(arr);
+//        bubbleSort(arr);
+//        selectionSort(arr);
+//		  insertionSort(arr);
 //        shellSort(arr);
 //        mergeSort(arr, 0, arr.length - 1);
 //        heapSort(arr);
 //        quickSort(arr, 0, arr.length - 1);
-
+//        countSort(arr);
         int[] ints = bucketSort(arr, 9999);
+
         long e = System.nanoTime();
         print(ints, (e - s) / 1000_000); //桶排序较特殊
+
         print(arr, (e - s) / 1000_000);
     }
 
-    private static int[] bucketSort(int[] arr, int maxNum) {
-        int sorted[] = new int[maxNum + 1];
+    /**
+     * 技术排序
+     * 找出待排序的数组中最大和最小的元素；
+     * 统计数组中每个值为i的元素出现的次数，存入数组C的第i项；
+     * 对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；
+     * 反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1
+     *
+     * @param arr
+     */
+    private static void countSort(int[] arr) {
+        int maxValue = 0;
         for (int i = 0; i < arr.length; i++) {
-            sorted[arr[i]] = arr[i];
+            if (maxValue < arr[i])
+                maxValue = arr[i];
         }
-        return sorted;
+        int bucket[] = new int[maxValue + 1];
+        for (int i = 0; i < arr.length; i++) {
+            bucket[arr[i]] = bucket[arr[i]] + 1;
+        }
+
+        int sortedIndex = 0;
+        for (int i = 0; i < bucket.length; i++) {
+            while (bucket[i] > 0) {
+                arr[sortedIndex++] = i;
+                bucket[i] = bucket[i] - 1;
+            }
+        }
+    }
+
+    /**
+     * 桶排序
+     * 技术排序的升级版，缩小了额外的使用空间
+     * @param arr
+     * @param maxNum
+     * @return
+     */
+    private static int[] bucketSort(int[] arr, int maxNum) {
+
+        return null;
     }
 
     /**
@@ -40,7 +75,7 @@ public class SortTest {
      * @param right
      */
     private static void quickSort(int[] arr, int left, int right) {
-        if (left >= right || arr ==null || arr.length<=1) {
+        if (left >= right || arr == null || arr.length <= 1) {
             return;
         }
         int pivot = arr[(right + left) / 2];
@@ -58,7 +93,7 @@ public class SortTest {
                 arr[j] = temp;
                 i++;
                 j--;
-            } else if(i == j)  {
+            } else if (i == j) {
                 i++;
             }
         }
