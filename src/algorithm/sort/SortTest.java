@@ -1,5 +1,8 @@
 package algorithm.sort;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author vector
  * @date: 2018/12/4 0004 10:07
@@ -18,8 +21,8 @@ public class SortTest {
 		//        mergeSort(arr, 0, arr.length - 1);
 		//        heapSort(arr);
 		//        quickSort(arr, 0, arr.length - 1);
-		countSort(arr);
-		//		int[] ints = bucketSort(arr, 9999);
+		//		countSort(arr);
+		bucketSort(arr);
 		long e = System.nanoTime();
 		//		print(ints, (e - s) / 1000_000); //桶排序较特殊
 		print(arr, (e - s) / 1000_000);
@@ -57,11 +60,48 @@ public class SortTest {
 	 * 桶排序
 	 * 技术排序的升级版，缩小了额外的使用空间
 	 * @param arr
-	 * @param maxNum
 	 * @return
 	 */
-	private static int[] bucketSort(int[] arr, int maxNum) {
-		return null;
+	private static void bucketSort(int[] arr) {
+		int max = arr[0], min = arr[0];
+		// 找出最大和最小值
+		for (int i : arr) {
+			if (max < i) {
+				max = i;
+			}
+			if (min > i) {
+				min = i;
+			}
+		}
+		int DEFAULT_BUCKET_SIZE = 5;
+		// 确定桶的数量
+		int bucketNum = max / DEFAULT_BUCKET_SIZE - min / DEFAULT_BUCKET_SIZE + 1;
+		// 创建bucket
+		ArrayList<List<Integer>> buckList = new ArrayList<>();
+		for (int i = 0; i < bucketNum; i++) {
+			buckList.add(new ArrayList<>());
+		}
+		for (int i = 0; i < arr.length; i++) {
+			buckList.get((arr[i] - min) / 10).add(arr[i]);
+
+		}
+		int index = 0;
+		for (int i = 0; i < bucketNum; i++) {
+			List<Integer> list = buckList.get(i);
+			int[] temp = list2arr(list);
+			insertionSort(temp);
+			for (int k : temp) {
+				arr[index++] = k;
+			}
+		}
+	}
+
+	private static int[] list2arr(List<Integer> list) {
+		int[] result = new int[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			result[i] = list.get(i);
+		}
+		return result;
 	}
 
 
