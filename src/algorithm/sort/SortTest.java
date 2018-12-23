@@ -7,18 +7,61 @@ package algorithm.sort;
  * https://mp.weixin.qq.com/s/b1T4yFGf98z4Zqe0cMrbrg
  */
 public class SortTest {
+
 	public static void main(String[] args) {
-		int arr[] = {3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+		int arr[] = {3, 44, 38, 5, 47, 36, 36, 26, 27, 2, 46, 4, 19, 50, 48};
 		long s = System.nanoTime();
 		//        bubbleSort(arr);
 		//        selectionSort(arr);
-		//		insertionSort(arr);
-		//		mergeSort(arr);
-		//		quickSort(arr,0,arr.length-1);
-		heapSort(arr);
+		//		  insertionSort(arr);
+		//        shellSort(arr);
+		//        mergeSort(arr, 0, arr.length - 1);
+		//        heapSort(arr);
+		//        quickSort(arr, 0, arr.length - 1);
+		countSort(arr);
+		//		int[] ints = bucketSort(arr, 9999);
 		long e = System.nanoTime();
+		//		print(ints, (e - s) / 1000_000); //桶排序较特殊
 		print(arr, (e - s) / 1000_000);
+	}
 
+	/**
+	 * 技术排序
+	 * 找出待排序的数组中最大和最小的元素；
+	 * 统计数组中每个值为i的元素出现的次数，存入数组C的第i项；
+	 * 对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；
+	 * 反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1
+	 *
+	 * @param arr
+	 */
+	private static void countSort(int[] arr) {
+		int maxValue = 0;
+		for (int i = 0; i < arr.length; i++) {
+			if (maxValue < arr[i])
+				maxValue = arr[i];
+		}
+		int bucket[] = new int[maxValue + 1];
+		for (int i = 0; i < arr.length; i++) {
+			bucket[arr[i]] = bucket[arr[i]] + 1;
+		}
+		int sortedIndex = 0;
+		for (int i = 0; i < bucket.length; i++) {
+			while (bucket[i] > 0) {
+				arr[sortedIndex++] = i;
+				bucket[i] = bucket[i] - 1;
+			}
+		}
+	}
+
+	/**
+	 * 桶排序
+	 * 技术排序的升级版，缩小了额外的使用空间
+	 * @param arr
+	 * @param maxNum
+	 * @return
+	 */
+	private static int[] bucketSort(int[] arr, int maxNum) {
+		return null;
 	}
 
 
@@ -85,6 +128,7 @@ public class SortTest {
 
 	/**
 	 * 交换元素
+	 *
 	 * @param arr
 	 * @param a
 	 * @param b
@@ -190,7 +234,6 @@ public class SortTest {
 		}
 	}
 
-
 	/**
 	 * 希尔排序又叫缩小增量排序
 	 * 选择一个增量序列t1，t2，…，tk，其中ti>tj，tk=1；
@@ -289,7 +332,6 @@ public class SortTest {
 			}
 		}
 	}
-
 
 	private static void print(int[] newArr, long millisecond) {
 		for (int i : newArr) {
