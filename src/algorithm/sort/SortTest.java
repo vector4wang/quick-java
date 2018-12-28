@@ -22,13 +22,14 @@ public class SortTest {
 		//        heapSort(arr);
 		//        quickSort(arr, 0, arr.length - 1);
 		//		countSort(arr);
-		bucketSort(arr);
+//		bucketSort(arr);
 		long e = System.nanoTime();
 		//		print(ints, (e - s) / 1000_000); //桶排序较特殊
 		print(arr, (e - s) / 1000_000);
 	}
 
-	/**
+
+    /**
 	 * 技术排序
 	 * 找出待排序的数组中最大和最小的元素；
 	 * 统计数组中每个值为i的元素出现的次数，存入数组C的第i项；
@@ -59,6 +60,7 @@ public class SortTest {
 	/**
 	 * 桶排序
 	 * 技术排序的升级版，缩小了额外的使用空间
+     * 主要：1、确定桶的个数；2、确定命中算法
 	 * @param arr
 	 * @return
 	 */
@@ -74,6 +76,33 @@ public class SortTest {
 			}
 		}
 		int DEFAULT_BUCKET_SIZE = 5;
+        /**
+         *
+         * 3, 44, 38, 5, 47, 36, 36, 26, 27, 2, 46, 4, 19, 50, 48
+         *
+         * min = 3,max = 50
+         * bucketNum = 50/5 - 3/5 + 1 = 11
+         *
+         * 0  1  2  3  4  5  6  7  8  9  10
+         * 3        38 44
+         * 5     26 36 47
+         * 2     27    46
+         * 4  19       50
+         *             48
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         */
+
+
+
+
 		// 确定桶的数量
 		int bucketNum = max / DEFAULT_BUCKET_SIZE - min / DEFAULT_BUCKET_SIZE + 1;
 		// 创建bucket
@@ -82,7 +111,7 @@ public class SortTest {
 			buckList.add(new ArrayList<>());
 		}
 		for (int i = 0; i < arr.length; i++) {
-			buckList.get((arr[i] - min) / 10).add(arr[i]);
+			buckList.get((arr[i] - min) / DEFAULT_BUCKET_SIZE).add(arr[i]);
 
 		}
 		int index = 0;
