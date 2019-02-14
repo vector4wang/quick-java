@@ -9,7 +9,7 @@ package feature_learn.thread.fork_join;//package quick.ForkJoinPool;
 // * Time: 17:10
 // * Description:
 // */
-//public class TestMain {
+//public class Client {
 //    public static void main(String[] args) {
 //        ForkJoinPool forkJoinPool = new ForkJoinPool(8);
 //        forkJoinPool.submit(()->{

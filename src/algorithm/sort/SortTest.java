@@ -23,9 +23,49 @@ public class SortTest {
 		//        quickSort(arr, 0, arr.length - 1);
 		//		countSort(arr);
 //		bucketSort(arr);
+		//		  countSort(arr);
+//		bucketSort(arr);
+		radixSort(arr,100);
 		long e = System.nanoTime();
 		//		print(ints, (e - s) / 1000_000); //桶排序较特殊
-		print(arr, (e - s) / 1000_000);
+		print(arr, (e - s) / 1000);
+	}
+
+
+	/**
+	 *
+	 * 基数排序
+	 *基数排序基于分别排序，分别收集，所以是稳定的。但基数排序的性能比桶排序要略差，每一次关键字的桶分配都需要O(n)的时间复杂度，而且分配之后得到新的关键字序列又需要O(n)的时间复杂度。假如待排数据可以分为d个关键字，则基数排序的时间复杂度将是O(d*2n) ，当然d要远远小于n，因此基本上还是线性级别的。
+	 *
+	 * 基数排序的空间复杂度为O(n+k)，其中k为桶的数量。一般来说n>>k，因此额外空间需要大概n个左右。
+	 *
+	 * @param arr 数组
+	 * @param numOfDigits 最大的位数
+	 */
+	private static void radixSort(int[] arr,int numOfDigits) {
+		int n = 1;
+		int k = 0;
+		int length = arr.length;
+		int[][] bucket = new int[10][length];
+		int[] order = new int[length];
+		while (n < numOfDigits) {
+			for (int num : arr) {
+				int digit = (num / n) % 10;
+				bucket[digit][order[digit]] = num;
+				order[digit]++;
+			}
+			for (int i = 0; i < length; i++) {
+				if (order[i] != 0) {
+					for (int j = 0; j < order[i]; j++) {
+						arr[k] = bucket[i][j];
+						k++;
+					}
+				}
+				order[i] = 0;
+			}
+			n*=10;
+			k=0;
+		}
 	}
 
 

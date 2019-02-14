@@ -7,7 +7,7 @@
 // * @Data 2018/9/19 0019
 // * @Description TODO
 // */
-//public class TestMain {
+//public class Client {
 //	public static void main(String[] args) {
 //		AnonymousResumeFeature anonymousResumeFeature = new AnonymousResumeFeature();
 //		anonymousResumeFeature.setCompany("八爪网络");
