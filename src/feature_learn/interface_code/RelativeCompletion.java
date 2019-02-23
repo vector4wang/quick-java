@@ -1,7 +1,7 @@
 package feature_learn.interface_code;
 
-import design_patterns.strategy.Resume;
-import design_patterns.strategy.ResumeZero;
+import design_patterns.strategy.completion.Resume;
+import design_patterns.strategy.completion.ResumeZero;
 
 public class RelativeCompletion extends AbstractCompletion {
 

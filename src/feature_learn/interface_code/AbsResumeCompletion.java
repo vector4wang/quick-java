@@ -1,6 +1,6 @@
 package feature_learn.interface_code;
 
-import design_patterns.strategy.Resume;
+import design_patterns.strategy.completion.Resume;
 
 public class AbsResumeCompletion extends AbstractCompletion {
 

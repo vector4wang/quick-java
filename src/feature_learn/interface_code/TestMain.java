@@ -1,6 +1,7 @@
 package feature_learn.interface_code;
 
-import design_patterns.strategy.*;
+import design_patterns.strategy.completion.Resume;
+import design_patterns.strategy.completion.ResumeZero;
 
 import java.util.HashMap;
 import java.util.Map;

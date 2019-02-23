@@ -1,4 +1,4 @@
-package design_patterns.strategy;
+package design_patterns.strategy.completion;
 
 public class AbsCompletion implements CompletionStrategy {
 
