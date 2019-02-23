@@ -28,7 +28,7 @@ public class Producer extends Thread {
         int size = random.nextInt(num);
         storage.produce(size);
 //        for (int i = 0; i < size; i++) {
-//            result.add(getRandomString(10));
+//            result.register(getRandomString(10));
 //        }
 //        storage.produce(num);
     }

@@ -23,7 +23,7 @@
 //		targetResumeFeature.setRealName("wxc");
 //		targetResumeFeature.setCompany("八爪");
 //		List<TargetResumeFeature> result = new ArrayList<>();
-//		result.add(targetResumeFeature);
+//		result.register(targetResumeFeature);
 //		return result;
 //	}
 //

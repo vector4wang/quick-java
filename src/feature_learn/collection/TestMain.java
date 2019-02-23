@@ -16,33 +16,33 @@ public class TestMain {
 //        System.out.println(h ^ i);
 
 //        HashSet<String> hashSet = new HashSet<>();
-//        hashSet.add("A");
+//        hashSet.register("A");
 //
 //        hashSet.remove("A");
 
 //        LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
 //
-//        linkedHashSet.add("A");
+//        linkedHashSet.register("A");
 //
 //        TreeSet<String> treeSet = new TreeSet<>();
-//        treeSet.add("A");
+//        treeSet.register("A");
 
 //        PriorityQueue<String> queue = new PriorityQueue<>();
-//        queue.add("A34");
-//        queue.add("A234");
-//        queue.add("A123");
-//        queue.add("A23");
-//        queue.add("A21");
-//        queue.add("A11");
-//        queue.add("A9");
-//        queue.add("A8");
-//        queue.add("A");
-//        queue.add("A6");
-//        queue.add("A5");
-//        queue.add("A4");
-//        queue.add("A3");
-//        queue.add("A2");
-//        queue.add("A1");
+//        queue.register("A34");
+//        queue.register("A234");
+//        queue.register("A123");
+//        queue.register("A23");
+//        queue.register("A21");
+//        queue.register("A11");
+//        queue.register("A9");
+//        queue.register("A8");
+//        queue.register("A");
+//        queue.register("A6");
+//        queue.register("A5");
+//        queue.register("A4");
+//        queue.register("A3");
+//        queue.register("A2");
+//        queue.register("A1");
 //        System.out.println(queue);
 
 
@@ -73,14 +73,14 @@ public class TestMain {
 //        hashSet.
 
 //        ArrayList al = new ArrayList(10);
-////        al.add(3);
-////        al.add(2);
-////        al.add(1);
-////        al.add(4);
-////        al.add(5);
-////        al.add(6);
-////        al.add(6);
-////        al.add(3);
+////        al.register(3);
+////        al.register(2);
+////        al.register(1);
+////        al.register(4);
+////        al.register(5);
+////        al.register(6);
+////        al.register(6);
+////        al.register(3);
 //
 //
 //
@@ -96,7 +96,7 @@ public class TestMain {
 //		ll.remove(1);
 //
 //        for (int i = 0; i < 10000; i++) {
-//            ll.add(i);
+//            ll.register(i);
 //        }
 //
 ////        long s = System.nanoTime();
@@ -110,15 +110,15 @@ public class TestMain {
 ////        iterateByForEach(ll);
 ////        iterateByIterator(ll);
 //		Vector<String> vec = new Vector<>();
-//		vec.add("a");
-//		vec.add("b");
+//		vec.register("a");
+//		vec.register("b");
 //		HashSet<String> hashSet = new HashSet<>(20);
-//		hashSet.add("A");
-//		hashSet.add("B");
-//		hashSet.add("C");
+//		hashSet.register("A");
+//		hashSet.register("B");
+//		hashSet.register("C");
 
 //		PriorityQueue<String> queue = new PriorityQueue<>();
-//		queue.add("A");
+//		queue.register("A");
 //		queue.contains("A");
 //		queue.remove("A");
 		int h = "B".hashCode();
@@ -142,7 +142,7 @@ public class TestMain {
 //        LinkedList ll = new LinkedList();
 //
 //        for (int i = 0; i < 10000; i++) {
-//            ll.add(i);
+//            ll.register(i);
 //        }
 //
 ////        long s = System.nanoTime();
@@ -159,9 +159,9 @@ public class TestMain {
 //
 //
 //        Vector<Integer> vector = new Vector<>();
-//        vector.add(1);
-//        vector.add(3);
-//        vector.add(2);
+//        vector.register(1);
+//        vector.register(3);
+//        vector.register(2);
 //
 //
 //        vector.get(1);

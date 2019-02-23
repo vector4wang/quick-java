@@ -8,6 +8,6 @@ public class ITSubject implements Subject {
 
 	@Override
 	public void score() {
-		System.out.println("need add online score");
+		System.out.println("need register online score");
 	}
 }

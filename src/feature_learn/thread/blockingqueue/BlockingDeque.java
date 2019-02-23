@@ -35,7 +35,7 @@ public class BlockingDeque {
 		public void run() {
 			for (int i = 1; i < 10; ++i) {
 				System.out.println(name + "  生产： " + i);
-				//concurrentLinkedQueue.add(i);
+				//concurrentLinkedQueue.register(i);
 				try {
 					concurrentLinkedQueue.put(i);
 					Thread.sleep(200); //模拟慢速的生产，产生阻塞的效果
