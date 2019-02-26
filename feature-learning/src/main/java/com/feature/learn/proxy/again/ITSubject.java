@@ -1,0 +1,13 @@
+package com.feature.learn.proxy.again;
+
+public class ITSubject implements Subject {
+	@Override
+	public void doSomething() {
+		System.out.println("need online");
+	}
+
+	@Override
+	public void score() {
+		System.out.println("need register online score");
+	}
+}
