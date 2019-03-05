@@ -18,6 +18,7 @@
         <module>design-patterns-learning</module>
         <module>feature-learning</module>
         <module>leetcode-learning</module>
+        <module>base-core</module>
     </modules>
     <build>
         <plugins>

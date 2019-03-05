@@ -8,7 +8,8 @@ public class TestMain {
 	public static void main(String[] args) {
 		JavaProgrammer javaProgrammer = new JavaProgrammer();
 		javaProgrammer.coding();
-		TestProgrammer testProgrammer = new TestProgrammer(javaProgrammer);
-		testProgrammer.coding();
+		System.out.println("================");
+		DeployProgrammer deployProgrammer = new DeployProgrammer(new TestProgrammer(javaProgrammer));
+		deployProgrammer.coding();
 	}
 }

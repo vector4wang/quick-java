@@ -8,6 +8,6 @@ public class TestProgrammer extends ProgrammerDecorator {
 	@Override
 	public void coding() {
 		super.coding();
-		System.out.println("昨晚要先测试");
+		System.out.println("testing service!");
 	}
 }
