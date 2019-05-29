@@ -20,5 +20,10 @@ public class TestMain {
         map.remove("C");
         map.hashCode();
         map.keySet();
+
+        String h = map.putIfAbsent("H", "1");
+        System.out.println(h);
+        System.out.println(map);
+
     }
 }

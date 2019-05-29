@@ -2,14 +2,15 @@ package com.feature.learn.codetimer;
 
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.BiFunction;
 
 /**
  * @author vector
  * @date: 2019/5/28 0028 15:32
  */
 public class CodeTimer {
-
-
 
 
     /**
@@ -36,28 +37,28 @@ public class CodeTimer {
     /**
      * subTask 与 name的映射map
      */
-    private Map<String, String> subTaskMap = new HashMap<>();
+    private static Map<String, String> subTaskMap = new Hashtable<>();
 
 
     /**
      * 任务被调用次数
      */
-    private static Map<String, Integer> taskCallCountMap = new HashMap<>(8);
+    private static ConcurrentHashMap<String, Long> taskCallCountMap = new ConcurrentHashMap<>(8);
 
     /**
-     *  任务执行时间
+     * 任务执行时间
      */
-    private static Map<String, Long> taskDurationMap = new HashMap<>(8);
+    private static ConcurrentHashMap<String, Long> taskDurationMap = new ConcurrentHashMap<>(8);
 
 
     private long startTimeMillis;
 
-    public void start(String taskName) {
+    public synchronized void start(String taskName) {
         this.currentTaskName = taskName;
         this.startTimeMillis = System.currentTimeMillis();
         this.id = UUID.randomUUID().toString();
         taskList.add(this.currentTaskName);
-//        subTaskStatus.put(this.id, true);
+        System.out.println(Thread.currentThread().getName() + " start");
         subTaskMap.put(this.id, this.currentTaskName);
     }
 
@@ -66,23 +67,18 @@ public class CodeTimer {
             throw new IllegalStateException("Can't stop StopWatch: it's not running");
         }
         long lastTime = System.currentTimeMillis() - this.startTimeMillis;
-        Integer integer = taskCallCountMap.getOrDefault(this.currentTaskName,0);
 
-        taskCallCountMap.put(this.currentTaskName, integer + 1);
-        Long duration = taskDurationMap.getOrDefault(this.currentTaskName,0L);
-        taskDurationMap.put(this.currentTaskName, duration + lastTime);
-//        runningMap.put(id, false);
+        taskCallCountMap.merge(this.currentTaskName, 1L, (a, b) -> a + b); // awosome jdk 1.8 必须要使用ConcurrentHashMap
+        taskDurationMap.merge(this.currentTaskName, lastTime, (a, b) -> a + b);
         isStop = true;
-    }
-
-    public static int getTaskCount() {
-        return taskCallCountMap.size();
     }
 
     public static void prettyPrint() {
         for (String taskName : taskList) {
-            System.out.println(taskName +" 被调用 " + taskCallCountMap.get(taskName) + "次，总耗时: "+ taskDurationMap.get(taskName));
+            System.out.println(taskName + " 被调用 " + taskCallCountMap.get(taskName) + "次，总耗时: " + taskDurationMap.get(taskName));
         }
+        System.out.println("subTaskMap: " + subTaskMap.size());
+        System.out.println("taskCallCountMap: " + taskCallCountMap);
     }
 
 }
