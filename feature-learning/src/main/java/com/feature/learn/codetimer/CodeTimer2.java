@@ -30,7 +30,6 @@ public class CodeTimer2 {
     private static ThreadLocal<Long> startTimeMillis = new ThreadLocal<>();
 
     public static void start(String taskName) {
-        System.out.println(Thread.currentThread().getName() + " ---> " + taskName);
         currentTaskName.set(taskName);
         startTimeMillis.set(System.currentTimeMillis());
     }
@@ -44,8 +43,7 @@ public class CodeTimer2 {
 
     public static void prettyPrint() {
         taskCallCountMap.forEach((k, v) -> {
-            System.out.println(k + " 被调用 " + v + "次，总耗时: " + taskDurationMap.get(k));
+            System.out.println("【" + k + "】被调用【" + v + "】次，总耗时：" + taskDurationMap.get(k) + "ms 平均耗时：" + taskDurationMap.get(k) / v +"ms");
         });
-        System.out.println("taskCallCountMap: " + taskCallCountMap);
     }
 }
