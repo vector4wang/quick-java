@@ -12,11 +12,11 @@ public class SubTask2 implements Callable<String> {
     public String call() {
         CodeTimer2.start("fun3");
         fun3();
-        CodeTimer2.stop();
+        CodeTimer2.stop("fun3");
 
         CodeTimer2.start("fun4");
         fun4();
-        CodeTimer2.stop();
+        CodeTimer2.stop("fun4");
 
         return Thread.currentThread().getName() + ": fun3";
     }
