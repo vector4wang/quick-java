@@ -60,7 +60,7 @@ public class TestMain2 {
         System.out.println("do nothing");
         CodeTimer2.start("fun5");
         fun5();
-        CodeTimer2.stop("fun4");
+        CodeTimer2.stop("fun5");
     }
 
     private static void fun5() {
