@@ -2,11 +2,10 @@ package com.feature.learn.thread.wait.threadpool;
 
 import com.feature.learn.thread.wait.onethread.TestThread;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
+ * 场景：一些任务开了线程池去处理，主线程需要在这些子线程完全执行完之后再去处理，就需要用到awaitTermination
  * @author vector
  * @date: 2019/5/30 0030 16:04
  */
@@ -16,7 +15,11 @@ public class TestMain {
 
         // 创建一个同时允许两个线程并发执行的线程池
         ExecutorService executor = Executors.newFixedThreadPool(5);
-        for (int i = 0; i < 5; i++) {
+//        ExecutorService pool = new ThreadPoolExecutor(5, 200,
+//                0L, TimeUnit.MILLISECONDS,
+//                new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+        for (int i = 0; i < 1000; i++) {
             Thread thread = new TestThread();
             executor.execute(thread);
         }
