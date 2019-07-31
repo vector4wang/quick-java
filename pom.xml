@@ -19,6 +19,7 @@
         <module>feature-learning</module>
         <module>leetcode-learning</module>
         <module>base-core</module>
+        <module>thread-blocked-demo</module>
     </modules>
     <build>
         <plugins>
