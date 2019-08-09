@@ -1,5 +1,8 @@
 package com.feature.learn.thread.base;
 
+/**
+ * https://blog.csdn.net/suifeng3051/article/details/49251959
+ */
 public class JoinExample {
     public static void main(String[] args) throws InterruptedException {
         Thread t = new Thread(new Runnable() {

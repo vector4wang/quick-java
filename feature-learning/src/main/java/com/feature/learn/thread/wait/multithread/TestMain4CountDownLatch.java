@@ -12,12 +12,13 @@ public class TestMain4CountDownLatch {
 
         // 创建一个初始值为5的倒数计数器
         CountDownLatch countDownLatch = new CountDownLatch(5);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             Thread thread = new TestThread(countDownLatch);
             thread.start();
         }
 
         try {
+            System.out.println("等待子线程执行！");
             // 阻塞当前（main）线程，直到倒数计数器倒数到0
             countDownLatch.await();
         } catch (InterruptedException e) {

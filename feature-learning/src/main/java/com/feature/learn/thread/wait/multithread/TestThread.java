@@ -1,5 +1,6 @@
 package com.feature.learn.thread.wait.multithread;
 
+import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -19,7 +20,7 @@ public class TestThread extends Thread {
         System.out.println(this.getName() + "子线程开始");
         try {
             // 子线程休眠五秒
-            Thread.sleep(5000);
+            Thread.sleep(new Random().nextInt(2000));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }finally {
