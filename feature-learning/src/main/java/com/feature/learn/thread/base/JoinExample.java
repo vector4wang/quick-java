@@ -18,7 +18,13 @@ public class JoinExample {
             }
         });
         Thread t1 = new Thread(new Runnable() {
+            @Override
             public void run() {
+//                try {
+//                    t.join();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 System.out.println("Second task completed");
             }
         });
@@ -26,7 +32,7 @@ public class JoinExample {
         /**
          * 如果join()方法在一个线程实例上调用，当前运行着的线程将阻塞直到这个线程实例完成了执行。
          */
-        t.join(); // Line 16
+//        t.join(); // Line 16
         t1.start();
     }
 }
