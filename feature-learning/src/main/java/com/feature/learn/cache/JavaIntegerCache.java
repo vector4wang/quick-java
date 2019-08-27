@@ -14,8 +14,8 @@ public class JavaIntegerCache {
         else
             System.out.println("integer1 != integer2");
 
-        Integer integer3 = 300;
-        Integer integer4 = 300;
+        Integer integer3 = 129;
+        Integer integer4 = 129;
 
         if (integer3 == integer4)
             System.out.println("integer3 == integer4");
@@ -27,5 +27,9 @@ public class JavaIntegerCache {
          * integer1 == integer2
          * integer3 != integer4
          */
+
+        System.out.println(Integer.valueOf("127")==Integer.valueOf("127"));
+        System.out.println(Integer.valueOf("128")==Integer.valueOf("128"));
+        System.out.println(Integer.parseInt("128")==Integer.valueOf("128"));
     }
 }

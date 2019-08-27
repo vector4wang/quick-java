@@ -20,6 +20,7 @@
         <module>leetcode-learning</module>
         <module>base-core</module>
         <module>thread-blocked-demo</module>
+        <module>aliyun-flink-sample</module>
     </modules>
     <build>
         <plugins>
