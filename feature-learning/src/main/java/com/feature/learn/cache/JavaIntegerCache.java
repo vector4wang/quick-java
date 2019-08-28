@@ -31,5 +31,13 @@ public class JavaIntegerCache {
         System.out.println(Integer.valueOf("127")==Integer.valueOf("127"));
         System.out.println(Integer.valueOf("128")==Integer.valueOf("128"));
         System.out.println(Integer.parseInt("128")==Integer.valueOf("128"));
+
+
+        Integer integer5 = new Integer(3);
+        Integer integer6 = new Integer(3);
+        if (integer5 == integer6)
+            System.out.println("integer5 == integer6");
+        else
+            System.out.println("integer5 != integer6");
     }
 }
