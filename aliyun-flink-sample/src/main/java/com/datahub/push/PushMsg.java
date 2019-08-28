@@ -23,12 +23,12 @@ import java.util.Random;
 public class PushMsg {
 
     private static String endpoint = "https://dh-cn-shenzhen.aliyuncs.com";
-    private static String accessId = "LTAIdhTimxPyt5Ng";
-    private static String accessKey = "C66tdOqByXH3MHeAT88IPj9xAFauoR";
+    private static String accessId = "xxxx";
+    private static String accessKey = "xxx";
 
-    private static String projectName = "flinkhub";
-    private static String topicName = "datahub_ipplace";
-    private static String shardId = "0";
+    private static String projectName = "xxx";
+    private static String topicName = "xxx";
+    private static String shardId = "xxx";
     private static int recordLimit = 10;
 
 
