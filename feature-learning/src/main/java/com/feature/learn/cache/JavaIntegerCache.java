@@ -22,7 +22,6 @@ public class JavaIntegerCache {
         else
             System.out.println("integer3 != integer4");
 
-
         /**
          * integer1 == integer2
          * integer3 != integer4
