@@ -9,8 +9,8 @@ import java.util.Map;
  */
 public class HashMapTest {
     public static void main(String[] args) {
-//        testBitOpera();
-        testOverflow();
+        testBitOpera();
+//        testOverflow();
     }
 
     public static void testHashMap() {
@@ -34,17 +34,16 @@ public class HashMapTest {
      * 位运算与直接乘的耗时比较
      */
     public static void testBitOpera() {
-        int val = 29;
+        int val = 28;
         long s = System.nanoTime();
         for (int i = 0; i < 100000000; i++) {
             int i1 = 29 * 31;
         }
-        System.out.println(System.nanoTime() - s);
+        System.out.println(System.nanoTime() - s); // 1937665
         s = System.nanoTime();
         for (int i = 0; i < 100000000; i++) {
             int i1 = (29 << 5) - 29;
         }
-        System.out.println(System.nanoTime() - s);
-
+        System.out.println(System.nanoTime() - s); // 951104
     }
 }
