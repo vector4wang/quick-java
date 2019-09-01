@@ -1,7 +1,6 @@
 package com.feature.learn.hash;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author vector
@@ -9,13 +8,17 @@ import java.util.Map;
  */
 public class HashMapTest {
     public static void main(String[] args) {
-        testBitOpera();
+    	testHashMap();
+//        testBitOpera();
 //        testOverflow();
     }
 
     public static void testHashMap() {
         HashMap<String, String> map = new HashMap<>();
         map.put("abc", "123");
+		int hashCode = "vector".hashCode();
+		System.out.println(hashCode);
+		System.out.println(Integer.toBinaryString(hashCode));
     }
 
     public static void testOverflow() {
@@ -25,8 +28,6 @@ public class HashMapTest {
             val = val * val;
             System.out.println(val + " : " + Integer.toBinaryString(val));
         }
-
-        System.out.println(val);
 
     }
 

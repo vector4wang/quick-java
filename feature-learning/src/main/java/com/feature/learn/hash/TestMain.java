@@ -10,8 +10,7 @@ import java.util.Objects;
  */
 public class TestMain {
 	public static void main(String[] args) {
-		String s1 = "abc";
-		System.out.println(Objects.hashCode(s1));
-		System.out.println(Objects.hash(s1));
+		System.out.println(Objects.hashCode("La's")); // 2358657
+		System.out.println(Objects.hashCode("MB's")); // 2358657
 	}
 }
