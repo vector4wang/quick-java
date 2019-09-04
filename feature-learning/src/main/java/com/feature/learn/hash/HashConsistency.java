@@ -28,18 +28,12 @@ public class HashConsistency {
         }};
         //
         ArrayList<String> lines = IoUtil.readUtf8Lines(new FileInputStream(new File("D:\\githubspace\\java-learning-quick\\feature-learning\\src\\main\\config\\words")), new ArrayList<>());
-
-
-        ConsistentHash consistentHash = new ConsistentHash(1, nodes);
-
-
+        ConsistentHash<String> consistentHash = new ConsistentHash<>(1, nodes);
         List<String> distinctList = lines.stream().distinct().collect(Collectors.toList());
         for (String line : distinctList) {
-            Object o = consistentHash.get(line);
-            System.out.println(line + " ---> " + o.toString());
+            String node = consistentHash.get(line);
+            System.out.println(line + " ---> " + node);
         }
-
-
     }
 
 
