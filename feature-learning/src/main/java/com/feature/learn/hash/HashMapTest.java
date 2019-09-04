@@ -8,8 +8,8 @@ import java.util.HashMap;
  */
 public class HashMapTest {
     public static void main(String[] args) {
-    	testHashMap();
-//        testBitOpera();
+//    	testHashMap();
+        testBitOpera();
 //        testOverflow();
     }
 
