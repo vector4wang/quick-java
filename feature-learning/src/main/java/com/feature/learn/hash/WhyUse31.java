@@ -68,7 +68,7 @@ public class WhyUse31 {
 
 	private static List<String> read() throws FileNotFoundException {
 //		InputStream stream = ResourceUtil.getStream("words.txt");
-		return IoUtil.readUtf8Lines(new FileInputStream(new File("/usr/share/dict/words")), new ArrayList<>());
+		return IoUtil.readUtf8Lines(new FileInputStream(new File("D:\\githubspace\\java-learning-quick\\feature-learning\\src\\main\\config\\words")), new ArrayList<>());
 //		return IoUtil.readUtf8Lines(stream, new ArrayList<>());
 	}
 
