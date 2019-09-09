@@ -6,6 +6,21 @@ package com.feature.learn.jvm.objectsize;
  */
 public class TestMain {
     public static void main(String[] args) {
+		/**
+		 * java中强制类型转换时，高位数截取成低位数的方法
+		 * 233: 00000000 00000000 00000000 11101001
+		 * int 4字节 32 位
+		 * byte 1字节 8位
+		 * 去低八位 11101001
+		 * 最高位位1 即为负数
+		 */
+    	byte b1 = (byte) 233;
+		System.out.println(b1);
+
+
+		int b2=10;
+		System.out.println(~b2);
+
         byte b = 1;
         Byte bb = 1;
 
@@ -31,11 +46,6 @@ public class TestMain {
         Boolean bbn = false;
 
 
-        System.out.println(SizeOfObject.sizeOf(b));
-        System.out.println(SizeOfObject.sizeOf(bb));
-
-        System.out.println(Byte.SIZE);
-        System.out.println(Short.SIZE);
 
     }
 }
