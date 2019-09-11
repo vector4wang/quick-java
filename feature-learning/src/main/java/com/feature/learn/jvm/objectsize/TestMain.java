@@ -15,11 +15,10 @@ public class TestMain {
 		 * 最高位位1 即为负数
 		 */
     	byte b1 = (byte) 233;
-		System.out.println(b1);
 
-
-		int b2=10;
-		System.out.println(~b2);
+        System.out.println((byte)233); // -23
+        System.out.println((byte)-233); // 23
+		System.out.println("~b2: " + ~10); // -11
 
         byte b = 1;
         Byte bb = 1;
@@ -33,6 +32,7 @@ public class TestMain {
         int i = 1;
         Integer bi = 1;
 
+
         double d = 1;
         Double bd = 1D;
 
@@ -44,6 +44,7 @@ public class TestMain {
 
         boolean bn = false;
         Boolean bbn = false;
+
 
 
 
