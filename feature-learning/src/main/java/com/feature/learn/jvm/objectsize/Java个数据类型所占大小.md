@@ -68,6 +68,18 @@ https://blog.csdn.net/qq_27093465/article/details/52262651
 
 ### Java中对象占用内存大小
 
+
+
+
+
+| 名称           | 大小 |
+| -------------- | ---- |
+| 对象头(Header) |      |
+
+
+
+
+
 #### 对象的组成
 
 ##### 对象头(Header)
@@ -133,5 +145,9 @@ HotSpot的对齐方式为8字节对齐：
 
 内存大小计算
 https://www.cnblogs.com/zhanjindong/p/3757767.html
+
+https://blog.csdn.net/ITer_ZC/article/details/41822719
+
+https://segmentfault.com/a/1190000006933272
 
 
