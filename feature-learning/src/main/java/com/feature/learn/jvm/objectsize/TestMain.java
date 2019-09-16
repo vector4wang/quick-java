@@ -20,30 +20,47 @@ public class TestMain {
         System.out.println((byte)-233); // 23
 		System.out.println("~b2: " + ~10); // -11
 
-        byte b = 1;
-        Byte bb = 1;
 
-        char c = 1;
-        Character bc = 1;
+        float af = 1f;
+        float bf = 0.9f;
 
-        short s = 1;
-        Short bs = 1;
+        float ff = af-bf;
 
-        int i = 1;
-        Integer bi = 1;
+        System.out.println(ff);
 
 
-        double d = 1;
-        Double bd = 1D;
+        short  s1 = 1;
+//        s1 = s1 + 1;
 
-        float f = 1;
-        Float bf = 1F;
+        s1 += 1;
 
-        long l = 1;
-        Long bl = 1L;
+        System.out.println(s1);
 
-        boolean bn = false;
-        Boolean bbn = false;
+//
+//        byte b = 1;
+//        Byte bb = 1;
+//
+//        char c = 1;
+//        Character bc = 1;
+//
+//        short s = 1;
+//        Short bs = 1;
+//
+//        int i = 1;
+//        Integer bi = 1;
+//
+//
+//        double d = 1;
+//        Double bd = 1D;
+//
+//        float f = 1;
+//        Float bf = 1F;
+//
+//        long l = 1;
+//        Long bl = 1L;
+//
+//        boolean bn = false;
+//        Boolean bbn = false;
 
 
 
