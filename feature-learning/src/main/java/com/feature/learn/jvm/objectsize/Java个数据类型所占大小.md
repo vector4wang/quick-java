@@ -59,6 +59,7 @@ https://blog.csdn.net/qq_27093465/article/details/52262651
 
 ### Java中对象占用内存大小
 
+
 ![对象组成图](https://i.loli.net/2019/09/16/1cBK6y3MpgVwaZQ.png)
 
 
@@ -71,6 +72,7 @@ https://blog.csdn.net/qq_27093465/article/details/52262651
 
 - 开启指针压缩指令`-XX:+UseCompressedOops`,关闭指令`-XX:-UseCompressedOops`,只在64位才有效且默认开启；
 - 数组对象头比普通对象多了个数组长度；
+
 
 
 
@@ -230,10 +232,8 @@ Jprofile如下
 
 内存大小计算
 https://www.cnblogs.com/zhanjindong/p/3757767.html
-
 https://blog.csdn.net/ITer_ZC/article/details/41822719
-
 https://segmentfault.com/a/1190000006933272
-
 https://www.jianshu.com/p/40faea07d4d2
+
 
