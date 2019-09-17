@@ -1,15 +1,18 @@
 package com.feature.learn.jvm.objectsize.sample;
 
 /**
- * @author vector
- * @date: 2019/9/16 0016 18:29
+ *
+ * @author wangxc
+ * @date: 2019-09-16 23:08
+ *
  */
-public class A {
-	private int i;
+public class B {
+	private int i = 5;
+	private Integer ii = 128;
 
 	public static void main(String[] args) throws InterruptedException {
-		A a = new A();
+		B b = new B();
 		Thread.sleep(1000 * 1000);
-		System.out.println(a);
+		System.out.println(b);
 	}
 }

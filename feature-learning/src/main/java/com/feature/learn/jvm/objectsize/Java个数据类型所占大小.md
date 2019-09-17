@@ -31,16 +31,7 @@ System.out.println("~b2: " + ~10); // -11
 
 ### 列表
 
-| 类型    | 存储需求 | bit 数 | 取值范围               | 备注                                                         |
-| ------- | -------- | ------ | ---------------------- | ------------------------------------------------------------ |
-| byte    | 1字节    | 1 * 8  | -128 ~ 127             | 字节类型。即 (-2)的7次方 ~ (2的7次方) - 1                    |
-| short   | 2字节    | 2 * 8  | -32768 ~ 32767         | 短整型。即 (-2)的15次方 ~ (2的15次方) - 1                    |
-| int     | 4字节    | 4 * 8  | -2147483648~2147483647 | 整型。即 (-2)的31次方 ~ (2的31次方) - 1                      |
-| long    | 8字节    | 8 * 8  |                        | 长整形。即 (-2)的63次方 ~ (2的63次方) - 1                    |
-| float   | 4字节    | 4 * 8  |                        | 浮点型(单精度)。float 类型的数值有一个后缀 F（例如：3.14F）<br />1bit（符号位） 8bits（指数位） 23bits（尾数位） |
-| double  | 8字节    | 8 * 8  |                        | 浮点型(双精度)。没有后缀F的浮点数值(如3.14)默认为double类型<br />1bit（符号位） 11bits（指数位） 52bits（尾数位） |
-| char    | 2字节    | 2 * 8  |                        | 字节型。Java中，只要是字符，不管是数字还是英文还是汉字，都占两个字节。 |
-| boolean | 1字节    | 1 * 8  | true、false            | 布尔型。                                                     |
+![Java基本类型](https://i.loli.net/2019/09/16/IEK8AykLWrBuq6z.png)
 
 注意：
 
@@ -68,6 +59,21 @@ https://blog.csdn.net/qq_27093465/article/details/52262651
 
 ### Java中对象占用内存大小
 
+![对象组成图](https://i.loli.net/2019/09/16/1cBK6y3MpgVwaZQ.png)
+
+
+
+| 名称(单位byte)  | 32位 | 64位 | 开启指针压缩后(指针对64位有效且默认开启) |
+| --------------- | ---- | ---- | ---------------------------------------- |
+| 对象头(Header)  | 8    | 16   | 12                                       |
+| 数组对象头      | 12   | 24   | 16                                       |
+| 引用(reference) | 4    | 8    | 4                                        |
+
+- 开启指针压缩指令`-XX:+UseCompressedOops`,关闭指令`-XX:-UseCompressedOops`,只在64位才有效且默认开启；
+- 数组对象头比普通对象多了个数组长度；
+
+
+
 #### 对象的组成
 
 ##### 对象头(Header)
@@ -75,19 +81,12 @@ https://blog.csdn.net/qq_27093465/article/details/52262651
 > “用于存储对象自身的运行时数据，如哈希码（HashCode）、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等，这部分数据的长度在32位和64位的虚拟机（未开启压缩指针）中分别为32bit和64bit，官方称它为"Mark Word”
 >
 
-32位系统占用8bytes,64位占用16bytes
-
-数组对象头则是24byte，比普通对象多了空间存储数组长度
-
-###### 实例数据(Instance Data)
+##### 实例数据(Instance Data)
 
 > “对象真正存储的有效信息，也是在程序代码中所定义的各种类型的字段内容。无论是从父类继承下来的，还是在子类中定义的，都需要记录起来”
 >
 
-- 参照上面列表占用大小;
-- 引用类型(reference)在32位系统上每个占用4bytes, 在64位系统上每个占用8bytes;
-
-###### 对其补充(Padding)
+##### 对其补充(Padding)
 
 >“第三部分对齐填充并不是必然存在的，也没有特别的含义，它仅仅起着占位符的作用。由于HotSpot VM的自动内存管理系统要求对象起始地址必须是8字节的整数倍，换句话说，就是对象的大小必须是8字节的整数倍。而对象头部分正好是8字节的倍数（1倍或者2倍），因此，当对象实例数据部分没有对齐时，就需要通过对齐填充来补全。”
 
@@ -99,19 +98,117 @@ HotSpot的对齐方式为8字节对齐：
 
 
 
-##### 指针压缩
+### 实战
 
-- 对象占用的内存大小收到VM参数**UseCompressedOops**的影响。
+再看具体的例子之前，需要了解下两个名词，下面使用Java性能监控工具`Jprofile`会用到
 
-开启（-XX:+UseCompressedOops）对象头大小为12bytes（64位机器）。
+- `Shallow Size` 对象自身占用的内存大小，不包括它引用的对象
+    - 针对非数组类型的对象，它的大小就是对象与它所有的成员变量大小的总和。当然这里面还会包括一些java语言特性的数据存储单元。
+    - 针对数组类型的对象，它的大小是数组元素对象的大小总和。
+- `Retained Size` Retained Size=当前对象大小+当前对象可直接或间接引用到的对象的大小总和。(间接引用的含义：A->B->C, C就是间接引用)
 
-- 对reference类型的影响
+注意：以下实验均在此环境下进行：
 
-64位机器上reference类型占用8个字节，开启指针压缩后占用4个字节。
+```bash
+java version "1.8.0_171"
+Java(TM) SE Runtime Environment (build 1.8.0_171-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.171-b11, mixed mode)
+```
 
-- 数组影响
 
-64位机器为24bytes，压缩后16bytes
+
+#### 实例一：
+
+```java
+public class A {
+	private int i;
+
+	public static void main(String[] args) throws InterruptedException {
+		A a = new A();
+		Thread.sleep(1000 * 1000);
+		System.out.println(a);
+	}
+}
+```
+
+分析: 64位下默认开启指针压缩，对象头位12byte, `i`4byte,此时12 + 4 = 16 可以整除8，所以padding=0,最终
+
+`12(header) + 4(instance data)+0(padding)=16byte` jprofile结果如下：
+
+![](https://i.loli.net/2019/09/16/vMca4FJKEfsCLdz.png)
+
+如果我们关掉指针压缩，
+
+![](https://i.loli.net/2019/09/16/t1Qh9yi7lAud3jL.png)
+
+`16(header) + 4(instance data)+4(padding)=24byte` *16+4=20,不能整除8，需要再加上4*，Jprofile如下
+
+![](https://i.loli.net/2019/09/16/WbviGAg2ExT5nol.png)
+
+
+
+#### 实例二
+
+```java
+public class B {
+   private int i = 5;
+   private Integer ii = 128;
+
+   public static void main(String[] args) throws InterruptedException {
+      B b = new B();
+      Thread.sleep(1000 * 1000);
+      System.out.println(b);
+   }
+}
+```
+
+比较特殊的地方时这里复制了，因为包装类型有自己的缓存，可以看这里*
+
+开启指针压缩，计算内存大小
+
+`Shallow Size`： 12(B Header) + 4 (i instance) + 4 (ii reference) + 4(padding) = 24
+
+`Retained Size`: 12(B Header) + 4 (i instance) + 4 (ii reference) + (12(ii header) + 4(instance)+ 0(padding)) + 4(padding) = 40
+
+Jprofile如下
+
+![](https://i.loli.net/2019/09/16/v5lKNQrYTG1XuWw.png)
+
+
+
+#### 实例三
+
+```java
+public class C {
+   private int i;
+   private char[] cc;
+
+   public C() {
+      i = 5;
+      cc = new char[]{'a', 'b', 'c'};
+   }
+
+   public static void main(String[] args) throws InterruptedException {
+      C c = new C();
+      Thread.sleep(1000 * 1000);
+      System.out.println(c);
+   }
+}
+```
+
+多了数组，注意数组自己本身的padding
+
+`Shallow Size`： 12(C Header) + 4 (i instance) + 4 (cc reference) + 4(padding) = 24
+
+`Retained Size`: 12(C Header) + 4 (i instance) + 4 (cc reference) + (16(cc header) + 2(instance) * 3+ 2(padding)) + 4(padding) = 48
+
+Jprofile如下
+
+![](https://i.loli.net/2019/09/17/Qd5ZPHrRCfyW6gU.png)
+
+
+
+#### 实例四
 
 
 
@@ -134,4 +231,9 @@ HotSpot的对齐方式为8字节对齐：
 内存大小计算
 https://www.cnblogs.com/zhanjindong/p/3757767.html
 
+https://blog.csdn.net/ITer_ZC/article/details/41822719
+
+https://segmentfault.com/a/1190000006933272
+
+https://www.jianshu.com/p/40faea07d4d2
 
