@@ -14,10 +14,7 @@ public class D {
 
 	public D() {
 		map = new HashMap<>();
-		map.put("A", "A1");
-		map.put("V", "A2");
-		map.put("X", "A3");
-		map.put("D", "A4");
+		map.put("A", "A");
 	}
 
 	public static void main(String[] args) throws InterruptedException {

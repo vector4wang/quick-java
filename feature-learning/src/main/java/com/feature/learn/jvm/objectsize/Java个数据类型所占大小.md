@@ -1,6 +1,6 @@
-# 基本数据类型各自所占大小
+# Java中对象占用内存大小计算
 
-
+可以直接进入正题**对象的组成**这一节
 
 ### byte与bit
 
@@ -25,8 +25,6 @@ System.out.println((byte)-233); // 23
 System.out.println("~b2: " + ~10); // -11
 ```
 
-
-
 ### 列表
 
 ![Java基本类型](https://i.loli.net/2019/09/16/IEK8AykLWrBuq6z.png)
@@ -42,16 +40,7 @@ System.out.println("~b2: " + ~10); // -11
     - int -> float
     - long -> double
 
-[高转低强转的方法](https://www.cnblogs.com/1020182600HENG/p/6765466.html)
-
-
-
-基本类型字节占用
-https://blog.csdn.net/litong09282039/article/details/46348265
-https://www.jianshu.com/p/fd560bc39adb
-https://blog.csdn.net/qq_27093465/article/details/52262651
-
-[字节、字、bit、byte的关系](https://blog.csdn.net/wanlixingzhe/article/details/7107923)
+后面会出一篇关于低转高，高转低的计算博文，敬请期待！
 
 
 
@@ -75,10 +64,7 @@ https://blog.csdn.net/qq_27093465/article/details/52262651
 - 开启指针压缩指令`-XX:+UseCompressedOops`,关闭指令`-XX:-UseCompressedOops`,只在64位才有效且默认开启；
 - 数组对象头比普通对象多了个数组长度；
 
-
-
-
-#### 
+ 
 
 ##### 对象头(Header)
 
@@ -103,6 +89,8 @@ HotSpot的对齐方式为8字节对齐：
 
 
 ### 实战
+
+#### `Shallow` 与 `Retained`区别
 
 再看具体的例子之前，需要了解下两个名词，下面使用Java性能监控工具`Jprofile`会用到
 
@@ -170,9 +158,9 @@ public class B {
 
 开启指针压缩，计算内存大小
 
-`Shallow Size`： 12(B Header) + 4 (i instance) + 4 (ii reference) + 4(padding) = 24
+`Shallow Size`： 12(B Header) + 4 (i instance) + 4 (ii reference) + 4(padding) = 24bytes
 
-`Retained Size`: 12(B Header) + 4 (i instance) + 4 (ii reference) + (12(ii header) + 4(instance)+ 0(padding)) + 4(padding) = 40
+`Retained Size`: 12(B Header) + 4 (i instance) + 4 (ii reference) + (12(ii header) + 4(instance)+ 0(padding)) + 4(padding) = 40bytes
 
 `Jprofile`如下
 
@@ -202,9 +190,9 @@ public class C {
 
 多了数组，注意数组自己本身的padding
 
-`Shallow Size`： 12(C Header) + 4 (i instance) + 4 (cc reference) + 4(padding) = 24
+`Shallow Size`： 12(C Header) + 4 (i instance) + 4 (cc reference) + 4(padding) = 24bytes
 
-`Retained Size`: 12(C Header) + 4 (i instance) + 4 (cc reference) + (16(cc header) + 2(instance) * 3+ 2(padding)) + 4(padding) = 48
+`Retained Size`: 12(C Header) + 4 (i instance) + 4 (cc reference) + (16(cc header) + 2(instance) * 3+ 2(padding)) + 4(padding) = 48bytes
 
 `Jprofile`如下
 
@@ -220,10 +208,7 @@ public class D {
 
 	public D() {
 		map = new HashMap<>();
-		map.put("A", "A1");
-		map.put("V", "A2");
-		map.put("X", "A3");
-		map.put("D", "A4");
+		map.put("A", "A");
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -234,17 +219,85 @@ public class D {
 }
 ```
 
-`Shallow Size`: 12(D header) + 4(map reference) + 0(padding) = 16
+`Shallow Size`: 12(D header) + 4(map reference) + 0(padding) = 16bytes
 
 基本上`Shallow Size`很容易就算出来
 
+但是`Retained Size`就异常的复杂，首先我们要去了解HashMap的结构
+
+```java
+transient Node<K,V>[] table;
+transient Set<Map.Entry<K,V>> entrySet;
+transient int size;
+transient int modCount;
+int threshold;
+final float loadFactor
+
+// 来自AbstractMap
+transient Set<K>        keySet;
+transient Collection<V> values;
+```
+
+Node的结构如下：
+
+```java
+final int hash;
+final K key;
+V value;
+Node<K,V> next;
+```
+
+注：此处的K，V是`String`类型
+
+再看`String`的结构
+
+```java
+    /** The value is used for character storage. */
+    private final char value[];
+
+    /** Cache the hash code for the string */
+    private int hash; // Default to 0
+```
 
 
 
+以下是自己的计算过程，结果是对了，但不知道具体过程是否正确，仅供参考！！！
+
+- D对象`12(D header) + 4(map reference) `=16
+- HashMap：`12(header) + 4(table ref) + 4(entrySet ref) + 4(size) + 4(modCount) + 4(thresload) + 4(float) + 4(keySet ref) + 4(values ref) + 4(padding)=48`
+- Node[]: `16(header) + 4(hash) + 4(key ref) + 4(val ref) + 4(next ref) + 0(padding)=32`
+
++ K与V：`(12(hader) + 4(hash) + 4(value ref) + (16(value header) + 1 * 2(char)) + 2(padding) = 40) * 2=80`
+
+最终：16 + 48 + 32 + 80 = 176！！！
+
+![](https://i.loli.net/2019/09/17/qQoZa59YGDXKPbs.png)
 
 
 
-内存大小计算
+### 总结
+
+最后总结一下，计算一个对象的大小需要注意一下几步：
+
+- Shallow 与Retained的区别；
+
+- 对象本身的大小；
+- 对象引用的对象也要注意对其补充，保证其也是被8整除的；
+- 复杂对象需要深入分析
+- 机器位数
+
+能快速估算出每一个对象占用空间的大小可以在编程的时候正确选择数据结构，有兴趣得可以看一下这一节
+
+> “5.2.6 不恰当数据结构导致内存占用过大”
+
+> 摘录来自: 周志明. “深入理解Java虚拟机：JVM高级特性与最佳实践。” iBooks. 
+
+当然了，就算不知道怎么估算，最终还是有神器`Jprofile`帮助我们监控性能与优化~
+
+
+
+参考：
+
 https://www.cnblogs.com/zhanjindong/p/3757767.html
 https://blog.csdn.net/ITer_ZC/article/details/41822719
 https://segmentfault.com/a/1190000006933272
