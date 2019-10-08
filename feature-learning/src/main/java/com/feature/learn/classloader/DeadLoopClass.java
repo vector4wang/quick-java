@@ -12,6 +12,8 @@ class DeadLoopClass {
 
     public static void main(String[] args) {
         Runnable script = new Runnable() {
+
+            @Override
             public void run() {
                 System.out.println(Thread.currentThread() + "start");
                 DeadLoopClass dlc = new DeadLoopClass();
@@ -24,4 +26,3 @@ class DeadLoopClass {
         thread2.start();
     }
 }
-
