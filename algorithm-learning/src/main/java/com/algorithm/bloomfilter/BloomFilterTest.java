@@ -39,6 +39,5 @@ public class BloomFilterTest {
 		System.out.println(bloomFilter.mightContain(key));
 
 	}
-
 }
 
