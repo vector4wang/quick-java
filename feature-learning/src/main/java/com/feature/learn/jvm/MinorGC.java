@@ -1,7 +1,7 @@
 package com.feature.learn.jvm;
 
 /**
- * VM: -verbose:gc-Xms20M-Xmx20M-Xmn10M-XX:+PrintGCDetails -XX:SurvivorRatio=8
+ * VM: -verbose:gc-Xms20M-Xmx20M-Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8
  *
  * @author vector
  * @date: 2019/6/13 0013 17:04
