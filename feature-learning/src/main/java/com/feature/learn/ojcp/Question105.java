@@ -13,7 +13,8 @@ public class Question105 {
 	public static String maskCC(String creditCard) {
 		String x = "XXXX-XXXX-XXXX-";
 		StringBuilder sb = new StringBuilder(creditCard);
-//		sb.insert(0, x);
+		sb.insert(0, x);
+		System.out.println(sb);
 		return sb.toString();
 
 	}

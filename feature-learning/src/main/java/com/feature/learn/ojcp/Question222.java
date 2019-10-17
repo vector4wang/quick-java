@@ -37,6 +37,6 @@ class Car extends Vehicle {
 
 	Car(String type, int maxSpeed, String trans) {
 		super(type, maxSpeed);
-		//		this(trans);                //line n2
+//				this(trans);                //line n2
 	}
 }
