@@ -15,7 +15,9 @@ import java.lang.reflect.Modifier;
 public class TestMain {
     public static void main(String[] args) {
         try {
+        	// forName0(className, true, ClassLoader.getClassLoader(caller), caller)
             Class<?> aClass = Class.forName("feature_learn.reflection.Person");
+//			Thread.currentThread().getClass().getClassLoader().loadClass("");
 
             /**
              * person 对应有四个构造器，数组长度就是4 为什么是倒叙而不是正序？

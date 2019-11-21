@@ -2,9 +2,11 @@ package com.feature.learn.thread.thread_local;
 
 public class ThreadLocalExample {
 
+
+
     public static class MyRunnable implements Runnable {
 
-        private ThreadLocal threadLocal = new ThreadLocal();
+		private ThreadLocal threadLocal = new ThreadLocal();
 
         @Override
         public void run() {
@@ -24,6 +26,6 @@ public class ThreadLocalExample {
         Thread thread2 = new Thread(sharedRunnableInstance);
         thread1.start();
         thread2.start();
-    }
+	}
 
 }

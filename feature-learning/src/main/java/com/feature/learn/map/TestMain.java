@@ -1,6 +1,8 @@
 package com.feature.learn.map;
 
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author vector
@@ -25,5 +27,10 @@ public class TestMain {
         System.out.println(h);
         System.out.println(map);
 
+
+		ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
+		concurrentHashMap.put("a", "b");
+		Hashtable<String, String> hashtable = new Hashtable<>();
+		hashtable.put("a", "c");
     }
 }

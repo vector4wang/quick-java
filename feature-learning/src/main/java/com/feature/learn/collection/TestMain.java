@@ -1,9 +1,6 @@
 package com.feature.learn.collection;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
@@ -75,13 +72,14 @@ public class TestMain {
 
 //        hashSet.
 
-//        ArrayList al = new ArrayList(10);
-////        al.register(3);
-////        al.register(2);
-////        al.register(1);
-////        al.register(4);
-////        al.register(5);
-////        al.register(6);
+        ArrayList al = new ArrayList(10);
+        al.add(23);
+//        al.register(3);
+//        al.register(2);
+//        al.register(1);
+//        al.register(4);
+//        al.register(5);
+//        al.register(6);
 ////        al.register(6);
 ////        al.register(3);
 //

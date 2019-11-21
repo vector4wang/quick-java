@@ -13,6 +13,10 @@ public class TestMain {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
 
+//        new new ThreadPoolExecutor(nThreads, nThreads,
+//				0L, TimeUnit.MILLISECONDS,
+//				new LinkedBlockingQueue<Runnable>());
+
         // 创建一个同时允许两个线程并发执行的线程池
         ExecutorService executor = Executors.newFixedThreadPool(5);
 //        ExecutorService pool = new ThreadPoolExecutor(5, 200,
